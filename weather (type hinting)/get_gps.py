@@ -21,5 +21,5 @@ def get_coordinate() -> Coordinates:
         
     return Coordinates(latitude=latitude, longitude=longitude)
 
-coordinate = get_coordinate()
-print(coordinate.latitude, coordinate.longitude)
+# coordinate = get_coordinate()
+# print(coordinate.latitude, coordinate.longitude)
