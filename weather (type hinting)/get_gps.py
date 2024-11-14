@@ -7,18 +7,18 @@ class Coordinates(NamedTuple):
     latitude: float
     longitude: float
 
-def get_coordinate() -> Coordinates:
-    async def getCoords():
-        locator = wdg.Geolocator()
-        pos = await locator.get_geoposition_async()
-        return [pos.coordinate.latitude, pos.coordinate.longitude]
-    
+async def getCoords():
+    locator = wdg.Geolocator()
+    pos = await locator.get_geoposition_async()
+    return [pos.coordinate.latitude, pos.coordinate.longitude]
+
+def get_coordinate() -> Coordinates:  
     latitude = longitude = None
     latitude, longitude = asyncio.run(getCoords())
     #округление координат
     if USE_ROUNDED_COORDS:
         latitude, longitude = map(lambda c: round(c, 1), [latitude, longitude])
-
+        
     return Coordinates(latitude=latitude, longitude=longitude)
 
 coordinate = get_coordinate()
