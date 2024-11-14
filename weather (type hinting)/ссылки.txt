@@ -1,0 +1,83 @@
+py -m pip install
+API-key for https://home.openweathermap.org/
+56f96e1797aba38fcb8f00b318c45d96
+
+FULL-URL:
+https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API key}
+https://api.openweathermap.org/data/2.5/weather?lat=60.02&lon=30.42&appid=56f96e1797aba38fcb8f00b318c45d96
+
+https://ru.api.openweathermap.org/data/2.5/weather?lat=60.02&lon=30.42&appid=56f96e1797aba38fcb8f00b318c45d96
+
+https://ru.api.openweathermap.org/data/2.5/weather?lat=60.02&lon=30.42&appid=56f96e1797aba38fcb8f00b318c45d96&lang=ru&units=metric
+
+1.Получать координаты
+2.Запрашивать погоду у сервиса openweathermap
+3.Результаты распарсивать, достать данные
+4.Отобразить данные в терминале
+
+def func -> tuple[float, float] - аннотация функции, показывает тип возвращаемого значения
+def foo(a: int, b: int = 5):
+
+Namedtuple - именованные кортежи.
+Кортежи представляют собой структуруданных разных объектов и не могут быть изменены после создания. Данные из котрежа можно получить используя числовые индексы.
+В именованных кортежах каждый объект сохранённый в них может быть доступен через уникальный, удобный для чтения человеком идентификтаор.
+>>> from collections import namedtuple
+>>> Car = namedtuple('Car' , 'color mileage') - оперделяем тип данных Car, работает split на строки с именами полей, поэтому можно написать так:
+
+>>> 'color mileage'.split()
+['color', 'mileage']
+>>> Car = namedtuple('Car', ['color', 'mileage'])
+
+>>> my_car = Car('red', 3812.4) - похоже на поведение классов, присвоение атрибутов
+>>> my_car.color
+'red'
+>>> my_car.mileage
+3812.4
+
+>>> color, mileage = my_car
+>>> print(color, mileage)
+red 3812.4
+>>> print(*my_car)
+red 3812.4
+
+Для from typing import NamedTuple
+class Man(NamedTuple):
+    name: str
+    age: int
+    weight: float
+	
+Есть ещё типизированный словарь:
+Для from typing import TypedDict
+class Man(TypedDict):
+    name: str
+    age: int
+    weight: float
+	
+	
+DataClass - обычный класс с атрибутами
+
+from dataclasses import dataclass
+@dataclass
+class Coordinates:
+	latitude: float
+    longitude: float
+	
+Можно переименовать нужный тип данных и использовать это название:
+Celsius = int
+
+class Weather(NamedTuple):
+    temperature: Celsius
+	
+	
+ПЕРЕЧИСЛЕНИЕ
+Тип данных Enum
+from enum import Enum
+
+class WeatherType(Enum):
+	Rain = 'Дождь'
+
+print(WeatherType.Rain.value)
+
+Можно перечислять:
+for weather_type in WeatherType:
+	print(weather_type.name, weather_type.value)
