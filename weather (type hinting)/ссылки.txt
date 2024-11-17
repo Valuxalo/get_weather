@@ -81,3 +81,67 @@ print(WeatherType.Rain.value)
 Можно перечислять:
 for weather_type in WeatherType:
 	print(weather_type.name, weather_type.value)
+	
+	
+Разделение строки на несколько строк:
+Скобки:
+long_string = ("Это очень очень длинная строка, которую "
+               "нам нужно разбить на несколько строк "
+               "для улучшения читаемости кода.")
+			   
+Если строка заключена в скобки, Python автоматически объединяет все строки в одну.
+
+Обратный слеш:
+long_string = "Это очень очень длинная строка, которую " \
+              "нам нужно разбить на несколько строк " \
+              "для улучшения читаемости кода."
+
+Тройные кавычки:
+long_string = """Это очень очень длинная строка, которую 
+                 нам нужно разбить на несколько строк 
+                 для улучшения читаемости кода."""
+				 
+				 
+Работа с URl:
+from urllib.request import urlopen
+ 
+url = "https://www.example.com"
+response = urlopen(url)
+ 
+print(response.read())
+
+
+import json
+из словаря в JSON:
+# создаем словарь
+>>> mydict = {"title": string, "code": integer, "data": array}
+>>> 
+>>> # сериализуем его в JSON-структуру, как строку
+>>> x = json.dumps(mydict)
+Из JSON в словарь:
+>>> # проводим десериализацию JSON-объекта
+>>> y = json.loads(x)
+>>> y
+{'title': 'Some test string', 'code': 211, 'data': [1, 2, 3, 4, 5]}
+>>> 
+>>> y["title"]
+'Some test string'
+
+Dumps позволяет создать JSON-строку из переданного в нее объекта. Loads — преобразовать строку назад в объекты языка.
+
+
+
+from typing import Literal
+def validate_simple(data: Any) -> Literal[True]:  # всегда возвращает `True`
+    ...
+
+MODE = Literal['r', 'rb', 'w', 'wb']
+def open_helper(file: str, mode: MODE) -> str:
+
+Переменная или резульат функции имеет значение, эквивалентное представленному литералу.
+
+from datetime import datetime
+datetime.fromtimestamp(1633076672)
+перевод из эпохи в нормальное время
+datetime.fromtimestamp(1633076672).strftime('%Y-%m-%d %H:%M:%S')
+форматирование времени
