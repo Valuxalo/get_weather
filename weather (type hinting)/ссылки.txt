@@ -129,7 +129,7 @@ import json
 
 Dumps позволяет создать JSON-строку из переданного в нее объекта. Loads — преобразовать строку назад в объекты языка.
 
-
+load выгружает из файла, loads - из строки
 
 from typing import Literal
 def validate_simple(data: Any) -> Literal[True]:  # всегда возвращает `True`

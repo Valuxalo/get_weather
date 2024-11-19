@@ -45,7 +45,7 @@ def _get_openweather_response(longitude=float, latitude=float) -> str:
 
 def _parse_openweather_response(openweather_response:str) -> Weather:
     try:
-        opeweather_dict = json.load(openweather_response)
+        opeweather_dict = json.loads(openweather_response)
     except JSONDecodeError:
         raise ApiServiceError
     return Weather(
@@ -85,3 +85,7 @@ def _parse_sun_time(
 
 def _parse_city(opeweather_dict:dict) -> str:
     return opeweather_dict['name']
+
+
+if __name__ == "__main__":
+    print(get_weather(Coordinates(latitude=60.02, longitude=30.42)))
