@@ -17,7 +17,7 @@ def get_coordinate() -> Coordinates:
     latitude, longitude = asyncio.run(getCoords())
     #округление координат
     if USE_ROUNDED_COORDS:
-        latitude, longitude = map(lambda c: round(c, 1), [latitude, longitude])
+        latitude, longitude = map(lambda c: round(c, 3), [latitude, longitude])
         
     return Coordinates(latitude=latitude, longitude=longitude)
 

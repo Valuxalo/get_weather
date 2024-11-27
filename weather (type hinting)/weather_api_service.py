@@ -25,6 +25,7 @@ class WeatherType(Enum):
 class Weather(NamedTuple):
     temperature: Celsius
     weather_type: WeatherType
+    weather_descr: str
     sunrise: datetime
     sunset: datetime
     city: str
@@ -51,6 +52,7 @@ def _parse_openweather_response(openweather_response:str) -> Weather:
     return Weather(
         temperature=_parse_temperature(opeweather_dict),
         weather_type=_parse_weather_type(opeweather_dict),
+        weather_descr=_parse_weather_descr(opeweather_dict),
         sunrise=_parse_sun_time(opeweather_dict, 'sunrise'),
         sunset=_parse_sun_time(opeweather_dict, 'sunset'),
         city=_parse_city(opeweather_dict)
@@ -86,6 +88,8 @@ def _parse_sun_time(
 def _parse_city(opeweather_dict:dict) -> str:
     return opeweather_dict['name']
 
+def _parse_weather_descr(opeweather_dict:dict) -> str:
+    return opeweather_dict['weather'][0]['description']
 
-if __name__ == "__main__":
-    print(get_weather(Coordinates(latitude=60.02, longitude=30.42)))
+# if __name__ == "__main__":
+#     print(get_weather(Coordinates(latitude=60.02, longitude=30.42)))
