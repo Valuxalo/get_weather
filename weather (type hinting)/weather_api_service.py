@@ -26,8 +26,8 @@ class Weather(NamedTuple):
     temperature: Celsius
     weather_type: WeatherType
     weather_descr: str
-    sunrise: datetime
-    sunset: datetime
+    sunrise: str
+    sunset: str
     city: str
 
 def get_weather(coordinates: Coordinates) -> Weather:
@@ -79,10 +79,11 @@ def _parse_weather_type(opeweather_dict:dict) -> WeatherType:
     for _id, _weather_type in weather_types.items():
         if weather_type_id.startswith(_id):
             return _weather_type
+    raise ApiServiceError
 
 def _parse_sun_time(
         opeweather_dict:dict,
-        time: Literal["sunrise","sunset"]) -> datetime:
+        time: Literal["sunrise","sunset"]) -> str:
     return datetime.fromtimestamp(opeweather_dict['sys'][time]).strftime('%Y-%m-%d %H:%M:%S')
 
 def _parse_city(opeweather_dict:dict) -> str:

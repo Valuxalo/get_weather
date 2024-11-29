@@ -145,3 +145,9 @@ datetime.fromtimestamp(1633076672)
 перевод из эпохи в нормальное время
 datetime.fromtimestamp(1633076672).strftime('%Y-%m-%d %H:%M:%S')
 форматирование времени
+
+
+from typing import Iterable, Sequence(с индексами), Mapping - указываем итерируемый тип 
+Iterable[User] вместе list[User] | tuple[User]
+
+some_users: Mapping[str, User] - some_user["alex"] - обращение по ключу, например, словарь

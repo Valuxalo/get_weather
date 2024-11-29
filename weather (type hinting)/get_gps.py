@@ -21,5 +21,6 @@ def get_coordinate() -> Coordinates:
         
     return Coordinates(latitude=latitude, longitude=longitude)
 
-# coordinate = get_coordinate()
-# print(coordinate.latitude, coordinate.longitude)
+if __name__ == "__main__":
+    coordinate = get_coordinate()
+    print(coordinate.latitude, coordinate.longitude)

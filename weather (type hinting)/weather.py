@@ -4,7 +4,7 @@ from get_gps import get_coordinate
 from weather_api_service import get_weather
 from weather_formatter import format_weather
 from exceptions import ApiServiceError, CantGetCoordinates
-from history import save_weather, PlainFileWeatherStorage
+from history import save_weather, PlainFileWeatherStorage, JSONFileWeatherStorage
 def main():
     try:
         coordinates = get_coordinate()
@@ -17,8 +17,11 @@ def main():
         print(f"Не удалось получить погоду по координтам {coordinates}")
         exit(1)
     print(format_weather(weather))
+    # save_weather(weather, 
+    #              PlainFileWeatherStorage(Path.cwd() / "history.txt"))
     save_weather(weather, 
-                 PlainFileWeatherStorage(Path.cwd() / "history.txt"))
+                 JSONFileWeatherStorage(Path.cwd() / "history.json"))
+
 
 if __name__ == "__main__":
     main()
